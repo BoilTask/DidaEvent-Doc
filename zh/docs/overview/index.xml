@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>事件系统 on DidaEvent</title><link>/zh/docs/overview/</link><description>Recent content in 事件系统 on DidaEvent</description><generator>Hugo</generator><language>zh</language><copyright>Copyright (c) 2020-2024 Thulite</copyright><lastBuildDate>Sun, 03 Nov 2024 12:00:00 +0000</lastBuildDate><atom:link href="/zh/docs/overview/index.xml" rel="self" type="application/rss+xml"/><item><title>实现说明</title><link>/zh/docs/overview/introduction/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/overview/introduction/</guid><description>&lt;h2 id="系统简述">系统简述&lt;/h2>
+&lt;p>一种允许在特定时机执行指定操作的机制，通常需要包括事件源、事件监听、事件调度等部分。&lt;/p>
+&lt;p>通过事件系统，我们可以更为方便地实现两个较为独立的系统之间的调用。&lt;/p>
+&lt;p>而引入一个好用的事件系统之后，我们也可以更多的使用“观察者模式”设计逻辑。&lt;/p>
+&lt;blockquote>
+&lt;p>观察者是一种行为设计模式，允许你定义一种订阅机制，可在对象事件发生时通知多个“观察”该对象的其他对象。——&lt;a href="https://refactoringguru.cn/design-patterns/observer">观察者设计模式 (refactoringguru.cn)&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="设计思路">设计思路&lt;/h2>
+&lt;p>我们需要提供一个更为完善的事件系统，从而达到实现类似需求时，无需再建立功能向的事件系统。&lt;/p>
+&lt;p>该系统应该实现以下几点目标：&lt;/p>
+&lt;ul>
+&lt;li>易用性
+&lt;ul>
+&lt;li>应尽可能减少系统的理解门槛
+&lt;ul>
+&lt;li>提高逻辑的可读性&lt;/li>
+&lt;li>完善系统的相关文档&lt;/li>
+&lt;li>规范事件系统的维护流程&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>应能便捷的由某一系统发送事件
+&lt;ul>
+&lt;li>C++中发送&lt;/li>
+&lt;li>蓝图中发送&lt;/li>
+&lt;li>Lua中发送&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>应能便捷的由某一系统监听事件
+&lt;ul>
+&lt;li>C++中监听&lt;/li>
+&lt;li>蓝图中监听&lt;/li>
+&lt;li>Lua中监听&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>扩展性
+&lt;ul>
+&lt;li>应能便捷的扩展一种新事件&lt;/li>
+&lt;li>提高技术方案的严谨性避免出现不兼容更新&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>全面性
+&lt;ul>
+&lt;li>应能处理DS与客户端的同步问题&lt;/li>
+&lt;li>应能解决C++&amp;amp;蓝图&amp;amp;Lua的三方通信&lt;/li>
+&lt;li>应能处理多监听者顺序问题&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>鲁棒性
+&lt;ul>
+&lt;li>尽量减少使用事件系统时的强制要求&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>性能
+&lt;ul>
+&lt;li>应在运行时减少不必要的事件分发]&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="功能实现">功能实现&lt;/h2>
+&lt;h3 id="事件定义">事件定义&lt;/h3>
+&lt;p>使用Class作为指定事件的一种索引，防止纯Name式带来的误操作，同时也方便后续以Event为单位扩展。&lt;/p></description></item><item><title>安装</title><link>/zh/docs/overview/install/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/overview/install/</guid><description>&lt;h2 id="购买">购买&lt;/h2>
+&lt;p>可前往&lt;a href="https://www.unrealengine.com/marketplace/zh-CN/product/didaevent">Unreal Engine Marketplace&lt;/a>购买。&lt;/p></description></item><item><title>更新日志</title><link>/zh/docs/overview/changelog/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/overview/changelog/</guid><description>&lt;h2 id="100">1.0.0&lt;/h2>
+&lt;p>上传基础实现版本。&lt;/p>
+&lt;ul>
+&lt;li>提供了事件定义&lt;/li>
+&lt;li>提供了事件广播&lt;/li>
+&lt;li>提供了事件监听&lt;/li>
+&lt;li>提供了频道机制&lt;/li>
+&lt;/ul></description></item></channel></rss>

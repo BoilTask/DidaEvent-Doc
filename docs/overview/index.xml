@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Event on DidaEvent</title><link>/docs/overview/</link><description>Recent content in Event on DidaEvent</description><generator>Hugo</generator><language>en</language><copyright>Copyright (c) 2020-2024 Thulite</copyright><lastBuildDate>Sun, 03 Nov 2024 12:00:00 +0000</lastBuildDate><atom:link href="/docs/overview/index.xml" rel="self" type="application/rss+xml"/><item><title>Introduction</title><link>/docs/overview/introduction/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/docs/overview/introduction/</guid><description>&lt;h2 id="system-overview">System Overview&lt;/h2>
+&lt;p>This is a mechanism that allows specific actions to be executed at designated times, typically including components such as event sources, event listeners, and event dispatchers.&lt;/p></description></item><item><title>Install</title><link>/docs/overview/install/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/docs/overview/install/</guid><description>&lt;h2 id="purchase">Purchase&lt;/h2>
+&lt;p>You can purchase it on the &lt;a href="https://www.unrealengine.com/marketplace/en-US/product/didaevent">Unreal Engine Marketplace&lt;/a>.&lt;/p></description></item><item><title>Changelog</title><link>/docs/overview/changelog/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/docs/overview/changelog/</guid><description>&lt;h2 id="100">1.0.0&lt;/h2>
+&lt;p>Uploaded the basic implementation version.&lt;/p>
+&lt;ul>
+&lt;li>Provided event definition&lt;/li>
+&lt;li>Provided event broadcast&lt;/li>
+&lt;li>Provided event listening&lt;/li>
+&lt;li>Provided channel mechanism&lt;/li>
+&lt;/ul></description></item></channel></rss>

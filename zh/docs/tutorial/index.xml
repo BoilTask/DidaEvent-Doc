@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>使用指南 on DidaEvent</title><link>/zh/docs/tutorial/</link><description>Recent content in 使用指南 on DidaEvent</description><generator>Hugo</generator><language>zh</language><copyright>Copyright (c) 2020-2024 Thulite</copyright><lastBuildDate>Sun, 03 Nov 2024 12:00:00 +0000</lastBuildDate><atom:link href="/zh/docs/tutorial/index.xml" rel="self" type="application/rss+xml"/><item><title>快速编写一个事件</title><link>/zh/docs/tutorial/quick/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/tutorial/quick/</guid><description>&lt;p>通过以下步骤，我们能快速定义和使用一个事件。&lt;/p>
+&lt;h2 id="定义事件">定义事件&lt;/h2>
+&lt;p>要创建一个事件，我们需要定义一个以&lt;code>UDidaEvent&lt;/code>为基类的子类，可以是&lt;code>C++&lt;/code>类也可以是蓝图类。&lt;/p>
+&lt;p>
+
+&lt;img
+ src="/images/quick-declare-event.gif"
+ width="700"
+ height="700"
+ decoding="async"
+ fetchpriority="auto"
+ loading="lazy"
+ alt="quick-declare-event"id="h-rh-i-0"
+/>&lt;/p>
+&lt;h2 id="广播事件">广播事件&lt;/h2>
+&lt;p>在蓝图中可以调用&lt;code>DidaInvokeEvent&lt;/code>结点触发事件。&lt;/p>
+&lt;p>
+
+&lt;img
+ src="/images/quick-invoke-event.gif"
+ width="650"
+ height="400"
+ decoding="async"
+ fetchpriority="auto"
+ loading="lazy"
+ alt="quick-invoke-event"id="h-rh-i-1"
+/>&lt;/p>
+&lt;h2 id="监听事件">监听事件&lt;/h2>
+&lt;p>在&lt;code>Actor&lt;/code>中可以使用&lt;code>DidaEventListenerComponent&lt;/code>来监听事件。&lt;/p>
+&lt;p>
+
+&lt;img
+ src="/images/quick-create-listener.gif"
+ width="350"
+ height="350"
+ decoding="async"
+ fetchpriority="auto"
+ loading="lazy"
+ alt="quick-create-listener"id="h-rh-i-2"
+/>&lt;/p>
+&lt;p>设置Component的属性，配置所需监听的事件。&lt;/p>
+&lt;p>
+
+&lt;img
+ src="/images/quick-set-listener-event.gif"
+ width="450"
+ height="450"
+ decoding="async"
+ fetchpriority="auto"
+ loading="lazy"
+ alt="quick-set-listener-event"id="h-rh-i-3"
+/>&lt;/p>
+&lt;p>使用Component上的Delegate编写收到事件后的逻辑。&lt;/p>
+&lt;p>
+
+&lt;img
+ src="/images/quick-set-listener-callback.gif"
+ width="1300"
+ height="750"
+ decoding="async"
+ fetchpriority="auto"
+ loading="lazy"
+ alt="quick-set-listener-callback"id="h-rh-i-4"
+/>&lt;/p>
+&lt;h2 id="恭喜">恭喜&lt;/h2>
+&lt;p>🎉通过如上步骤我们实现了一个功能：&lt;/p>
+&lt;p>在按键时，角色对象输出了一条日志。&lt;/p></description></item></channel></rss>
