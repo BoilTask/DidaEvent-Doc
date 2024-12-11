@@ -1,54 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Concepts on DidaEvent</title><link>/docs/concept/</link><description>Recent content in Concepts on DidaEvent</description><generator>Hugo</generator><language>en</language><copyright>Copyright (c) 2020-2024 Thulite</copyright><lastBuildDate>Sun, 03 Nov 2024 12:00:00 +0000</lastBuildDate><atom:link href="/docs/concept/index.xml" rel="self" type="application/rss+xml"/><item><title>Invoke Event</title><link>/docs/concept/invoke/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/docs/concept/invoke/</guid><description>&lt;p>The following nodes are available for triggering events:&lt;/p>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Node Name&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>DidaInvokeEvent&lt;/td>
- &lt;td>The most commonly used event trigger node; also used to access the EventSubsystem&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;p>For example, you can use the &lt;code>DidaInvokeEvent&lt;/code> node directly within a blueprint.&lt;/p></description></item><item><title>Listening to Events</title><link>/docs/concept/listener/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/docs/concept/listener/</guid><description>&lt;h2 id="listening-methods">Listening Methods&lt;/h2>
-&lt;p>Currently, the following options are available for event listeners:&lt;/p>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Type&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>DidaEventListenerComponent&lt;/td>
- &lt;td>Can be added to any object that allows components, listens for events at BeginPlay based on configuration.&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventListenerWidget&lt;/td>
- &lt;td>Can be added to any widget-supporting object, listens for events at Construct based on configuration.&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventListenerVariable&lt;/td>
- &lt;td>A versatile listener that can be placed anywhere and requires manual function calls to bind listeners.&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventMultiListenerComponent&lt;/td>
- &lt;td>Similar to DidaEventListenerComponent, but allows for multiple event listeners.&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventMultiListenerWidget&lt;/td>
- &lt;td>Similar to DidaEventListenerWidget, but allows for multiple event listeners.&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventMultiListenerVariable&lt;/td>
- &lt;td>Similar to DidaEventListenerVariable, but allows for multiple event listeners.&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;p>For example, you can create a listener using &lt;code>CreateListenerVariable&lt;/code>.&lt;/p></description></item><item><title>Event Channel</title><link>/docs/concept/channel/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/docs/concept/channel/</guid><description>&lt;h2 id="mechanism-overview">Mechanism Overview&lt;/h2>
-&lt;p>To address cases where some listeners do not need to respond to all triggers of a specific event, a channel mechanism is introduced.&lt;/p></description></item><item><title>Event Payload</title><link>/docs/concept/payload/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/docs/concept/payload/</guid><description>&lt;h2 id="basic-usage">Basic Usage&lt;/h2>
-&lt;p>The payload is used to carry additional parameters when an event is triggered. It is defined by inheriting from &lt;code>UDidaEventPayload&lt;/code>.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Concepts on DidaEvent</title>
+    <link>/docs/concept/</link>
+    <description>Recent content in Concepts on DidaEvent</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copyright (c) 2020-2024 Thulite</copyright>
+    <lastBuildDate>Sun, 03 Nov 2024 12:00:00 +0000</lastBuildDate>
+    <atom:link href="/docs/concept/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Invoke Event</title>
+      <link>/docs/concept/invoke/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/docs/concept/invoke/</guid>
+      <description>&lt;p&gt;The following nodes are available for triggering events:&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Node Name&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaInvokeEvent&lt;/td&gt;&#xA;          &lt;td&gt;The most commonly used event trigger node; also used to access the EventSubsystem&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;For example, you can use the &lt;code&gt;DidaInvokeEvent&lt;/code&gt; node directly within a blueprint.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Listening to Events</title>
+      <link>/docs/concept/listener/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/docs/concept/listener/</guid>
+      <description>&lt;h2 id=&#34;listening-methods&#34;&gt;Listening Methods&lt;/h2&gt;&#xA;&lt;p&gt;Currently, the following options are available for event listeners:&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventListenerComponent&lt;/td&gt;&#xA;          &lt;td&gt;Can be added to any object that allows components, listens for events at BeginPlay based on configuration.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventListenerWidget&lt;/td&gt;&#xA;          &lt;td&gt;Can be added to any widget-supporting object, listens for events at Construct based on configuration.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventListenerVariable&lt;/td&gt;&#xA;          &lt;td&gt;A versatile listener that can be placed anywhere and requires manual function calls to bind listeners.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventMultiListenerComponent&lt;/td&gt;&#xA;          &lt;td&gt;Similar to DidaEventListenerComponent, but allows for multiple event listeners.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventMultiListenerWidget&lt;/td&gt;&#xA;          &lt;td&gt;Similar to DidaEventListenerWidget, but allows for multiple event listeners.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventMultiListenerVariable&lt;/td&gt;&#xA;          &lt;td&gt;Similar to DidaEventListenerVariable, but allows for multiple event listeners.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;For example, you can create a listener using &lt;code&gt;CreateListenerVariable&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Event Channel</title>
+      <link>/docs/concept/channel/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/docs/concept/channel/</guid>
+      <description>&lt;h2 id=&#34;mechanism-overview&#34;&gt;Mechanism Overview&lt;/h2&gt;&#xA;&lt;p&gt;To address cases where some listeners do not need to respond to all triggers of a specific event, a channel mechanism is introduced.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Event Payload</title>
+      <link>/docs/concept/payload/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/docs/concept/payload/</guid>
+      <description>&lt;h2 id=&#34;basic-usage&#34;&gt;Basic Usage&lt;/h2&gt;&#xA;&lt;p&gt;The payload is used to carry additional parameters when an event is triggered. It is defined by inheriting from &lt;code&gt;UDidaEventPayload&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

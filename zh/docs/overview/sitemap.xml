@@ -1,1 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>/zh/docs/overview/introduction/</loc><lastmod>2024-11-03T12:00:00+00:00</lastmod><changefreq>monthly</changefreq><priority>0.5</priority><xhtml:link rel="alternate" hreflang="en" href="/docs/overview/introduction/"/><xhtml:link rel="alternate" hreflang="zh" href="/zh/docs/overview/introduction/"/></url><url><loc>/zh/docs/overview/install/</loc><lastmod>2024-11-03T12:00:00+00:00</lastmod><changefreq>monthly</changefreq><priority>0.5</priority><xhtml:link rel="alternate" hreflang="en" href="/docs/overview/install/"/><xhtml:link rel="alternate" hreflang="zh" href="/zh/docs/overview/install/"/></url><url><loc>/zh/docs/overview/changelog/</loc><lastmod>2024-11-03T12:00:00+00:00</lastmod><changefreq>monthly</changefreq><priority>0.5</priority><xhtml:link rel="alternate" hreflang="en" href="/docs/overview/changelog/"/><xhtml:link rel="alternate" hreflang="zh" href="/zh/docs/overview/changelog/"/></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+    <url>
+      <loc>/zh/docs/overview/introduction/</loc>
+      <lastmod>2024-11-03T12:00:00+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+      <xhtml:link
+                  rel="alternate"
+                  hreflang="en"
+                  href="/docs/overview/introduction/"
+                  />
+      <xhtml:link
+                  rel="alternate"
+                  hreflang="zh"
+                  href="/zh/docs/overview/introduction/"
+                  />
+    </url>
+    
+    <url>
+      <loc>/zh/docs/overview/install/</loc>
+      <lastmod>2024-11-03T12:00:00+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+      <xhtml:link
+                  rel="alternate"
+                  hreflang="en"
+                  href="/docs/overview/install/"
+                  />
+      <xhtml:link
+                  rel="alternate"
+                  hreflang="zh"
+                  href="/zh/docs/overview/install/"
+                  />
+    </url>
+    
+    <url>
+      <loc>/zh/docs/overview/changelog/</loc>
+      <lastmod>2024-11-03T12:00:00+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+      <xhtml:link
+                  rel="alternate"
+                  hreflang="en"
+                  href="/docs/overview/changelog/"
+                  />
+      <xhtml:link
+                  rel="alternate"
+                  hreflang="zh"
+                  href="/zh/docs/overview/changelog/"
+                  />
+    </url>
+    </urlset>

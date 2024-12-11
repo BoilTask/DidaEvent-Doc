@@ -1,9 +1,709 @@
-<!doctype html><html lang=zh data-bs-theme=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=preload href=/fonts/vendor/jost/jost-v4-latin-regular.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/vendor/jost/jost-v4-latin-500.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/vendor/jost/jost-v4-latin-700.woff2 as=font type=font/woff2 crossorigin><script src=/js/color-mode.86a91f050a481d0a3f0c72ac26543cb6228c770875981c58dcbc008fd3f875c8.js integrity="sha256-hqkfBQpIHQo/DHKsJlQ8tiKMdwh1mBxY3LwAj9P4dcg="></script><link rel=stylesheet href="/main.685468b25f7104c105fb780b7049b61b756ae1f26a67d7720ef19d42034e7d21dc90fb7c835c342721f73b0097d2e9a5c4c3ea2dbd127cff9db7469d13c13a84.css" integrity="sha512-aFRosl9xBMEF+3gLcEm2G3Vq4fJqZ9dyDvGdQgNOfSHckPt8g1w0JyH3OwCX0umlxMPqLb0SfP+dt0adE8E6hA==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><base href=/zh/docs/concept/listener/><link rel=canonical href=/zh/docs/concept/listener/><link rel=alternate hreflang=x-default href=/docs/concept/listener/><link rel=alternate hreflang=en href=/docs/concept/listener/><link rel=alternate hreflang=zh href=/zh/docs/concept/listener/><title>监听事件 | DidaEvent</title>
-<meta name=description content="DidaEvent系统是一个事件系统，用于在特定时机执行指定操作。"><link rel=icon href=/favicon.ico sizes=32x32><link rel=icon href=/favicon.svg type=image/svg+xml><link rel=apple-touch-icon href=/apple-touch-icon.png sizes=180x180 type=image/png><link rel=icon href=/favicon-192x192.png sizes=192x192 type=image/png><link rel=icon href=/favicon-512x512.png sizes=512x512 type=image/png><link rel=manifest href=/manifest.webmanifest><meta property="og:url" content="/zh/docs/concept/listener/"><meta property="og:site_name" content="DidaEvent"><meta property="og:title" content="监听事件"><meta property="og:description" content="DidaEvent系统是一个事件系统，用于在特定时机执行指定操作。"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2024-11-03T12:00:00+00:00"><meta property="article:modified_time" content="2024-11-03T12:00:00+00:00"><meta property="og:image" content="/cover.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/cover.png"><meta name=twitter:title content="监听事件"><meta name=twitter:description content="DidaEvent系统是一个事件系统，用于在特定时机执行指定操作。"><meta name=twitter:site content="@getdoks"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"/zh/","name":"Dida Event","position":1},{"@type":"ListItem","item":"/zh/docs/","name":"Docs","position":2},{"@type":"ListItem","item":"/zh/docs/concept/","name":"概念说明","position":3},{"@type":"ListItem","name":"监听事件","position":4}]}</script></head><body class="single section docs" data-bs-spy=scroll data-bs-target=#toc data-bs-root-margin="0px 0px -60%" data-bs-smooth-scroll=true tabindex=0><div class=sticky-top><header class="navbar navbar-expand-lg"><div class=container-lg><a class="navbar-brand me-auto me-lg-3" href=/zh/>DidaEvent</a>
-<button type=button id=searchToggleMobile class="btn btn-link nav-link mx-2 d-lg-none" aria-label="Search website">
-<svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
-</button>
-<button class="btn btn-link d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasNavSection aria-controls=offcanvasNavSection aria-label="Open section navigation menu"><svg class="icon icon-tabler icon-tabler-dots-vertical" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 102 0 1 1 0 10-2 0"/><path d="M12 19m-1 0a1 1 0 102 0 1 1 0 10-2 0"/><path d="M12 5m-1 0a1 1 0 102 0 1 1 0 10-2 0"/></svg></button><div class="offcanvas offcanvas-start d-lg-none" tabindex=-1 id=offcanvasNavSection aria-labelledby=offcanvasNavSectionLabel><div class=offcanvas-header><h5 class=offcanvas-title id=offcanvasNavSectionLabel>Docs</h5><button type=button class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss=offcanvas aria-label=Close><svg class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg></button></div><div class=offcanvas-body><aside class="doks-sidebar mt-n3"><nav id=doks-docs-nav aria-label="Tertiary navigation"><nav class="section-nav docs-links"><ul class=list-unstyled><li><details open><summary>事件系统</summary><ul class="list-unstyled list-nested"><li><a href=/zh/docs/overview/introduction/>实现说明</a></li><li><a href=/zh/docs/overview/install/>安装</a></li><li><a href=/zh/docs/overview/changelog/>更新日志</a></li></ul></details></li><li><details open><summary>使用指南</summary><ul class="list-unstyled list-nested"><li><a href=/zh/docs/tutorial/quick/>快速编写一个事件</a></li></ul></details></li><li><details open open><summary>概念说明</summary><ul class="list-unstyled list-nested"><li><a href=/zh/docs/concept/invoke/>广播事件</a></li><li class=active><a aria-current=page href=/zh/docs/concept/listener/>监听事件</a></li><li><a href=/zh/docs/concept/channel/>事件频道</a></li><li><a href=/zh/docs/concept/payload/>事件载荷</a></li></ul></details></li></ul></nav></nav></aside></div></div><button class="btn btn-link nav-link mx-2 order-3 d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasNavMain aria-controls=offcanvasNavMain aria-label="Open main navigation menu"><svg class="icon icon-tabler icon-tabler-menu" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg></button><div class="offcanvas offcanvas-end h-auto" tabindex=-1 id=offcanvasNavMain aria-labelledby=offcanvasNavMainLabel><div class=offcanvas-header><h5 class=offcanvas-title id=offcanvasNavMainLabel>DidaEvent</h5><button type=button class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss=offcanvas aria-label=Close><svg class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg></button></div><div class="offcanvas-body d-flex flex-column flex-lg-row justify-content-between"><ul class="navbar-nav flex-grow-1"><li class=nav-item><a class="nav-link active" href=/zh/docs/overview/introduction/ aria-current=true>Docs</a></li></ul><button type=button id=searchToggleDesktop class="btn btn-link nav-link p-2 d-none d-lg-block" aria-label="Search website"><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg></button><div class="dropdown mt-1 order-lg-2"><button class="btn btn-dropdown dropdown-toggle" id=doks-languages data-bs-toggle=dropdown aria-expanded=false data-bs-display=static>
-<span class=dropdown-caret><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c0 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
-<span id=doks-language-current>简体中文</span><svg class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6 6-6"/></svg></span></button><ul class="dropdown-menu dropdown-menu-lg-end me-lg-2 shadow rounded border-0" aria-labelledby=doks-languages><li><span class="dropdown-item current" aria-current=true>简体中文</span></li><li><hr class=dropdown-divider></li><li><a class=dropdown-item rel=alternate href=/docs/concept/listener/ hreflang=en lang=en>English</a></li></ul></div><button id=buttonColorMode class="btn btn-link mx-auto nav-link p-0 ms-lg-2 me-lg-1" type=button aria-label="Toggle theme"><svg data-bs-theme-value="dark" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg><svg data-bs-theme-value="light" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></button></div></div></div></header></div><div class=modal id=searchModal tabindex=-1 aria-labelledby=searchModalLabel aria-hidden=true><div class="modal-dialog modal-dialog-scrollable modal-fullscreen-md-down"><div class=modal-content><div class=modal-header><h1 class="modal-title fs-5 visually-hidden" id=searchModalLabel>Search</h1><button type=button class="btn-close visually-hidden" data-bs-dismiss=modal aria-label=Close></button><div class="search-input flex-grow-1 d-none"><form id=search-form class=search-form action=# method=post accept-charset=UTF-8 role=search><label for=query class=visually-hidden>Search</label><div class=d-flex><input type=search id=query name=query class="search-text form-control form-control-lg" placeholder=Search aria-label=Search maxlength=128 autocomplete=off>
-<button type=button class="btn btn-link text-decoration-none px-0 ms-3 d-md-none" data-bs-dismiss=modal aria-label=Close>Cancel</button></div></form></div></div><div class=modal-body><p class="search-loading status message d-none mt-3 text-center">Loading search index…</p><p class="search-no-recent message d-none mt-3 text-center">No recent searches</p><p class="search-no-results message d-none mt-3 text-center">No results for "<strong><span class=query-no-results>Query here</span></strong>"</p><div id=searchResults class=search-results></div><template><article class="search-result list-view"><div class="card my-3"><div class=card-body><header><h2 class="h5 title title-submitted mb-0"><a class="stretched-link text-decoration-none text-reset" href=#>Title here</a></h2><div class="submitted d-none"><time class=created-date>Date here</time></div></header><div class=content>Summary here</div></div></div></article></template></div><div class=modal-footer><ul class="list-inline me-auto d-none d-md-block"><li class=list-inline-item><kbd class=me-2><svg width="15" height="15" aria-label="Enter key" role="img"><g fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M12 3.53088v3c0 1-1 2-2 2H4m3 3-3-3 3-3"/></g></svg></kbd><span class=DocSearch-Label>to select</span></li><li class=list-inline-item><kbd class=me-2><svg width="15" height="15" aria-label="Arrow down" role="img"><g fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 3.5v8m3-3-3 3-3-3"/></g></svg></kbd><kbd class=me-2><svg width="15" height="15" aria-label="Arrow up" role="img"><g fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 11.5v-8m3 3-3-3-3 3"/></g></svg></kbd><span class=DocSearch-Label>to navigate</span></li><li class=list-inline-item><kbd class=me-2><svg width="15" height="15" aria-label="Escape key" role="img"><g fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993.0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016s1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5s-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864.0 1.6425 1.031 1.5443 2.2492h-2.956"/></g></svg></kbd><span class=DocSearch-Label>to close</span></li></ul><p class=d-md-none>Search by <a class=text-decoration-none href=https://github.com/nextapps-de/flexsearch>FlexSearch</a></p></div></div></div></div><div class="wrap container-lg" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class="section-nav docs-links"><ul class=list-unstyled><li><details open><summary>事件系统</summary><ul class="list-unstyled list-nested"><li><a href=/zh/docs/overview/introduction/>实现说明</a></li><li><a href=/zh/docs/overview/install/>安装</a></li><li><a href=/zh/docs/overview/changelog/>更新日志</a></li></ul></details></li><li><details open><summary>使用指南</summary><ul class="list-unstyled list-nested"><li><a href=/zh/docs/tutorial/quick/>快速编写一个事件</a></li></ul></details></li><li><details open open><summary>概念说明</summary><ul class="list-unstyled list-nested"><li><a href=/zh/docs/concept/invoke/>广播事件</a></li><li class=active><a aria-current=page href=/zh/docs/concept/listener/>监听事件</a></li><li><a href=/zh/docs/concept/channel/>事件频道</a></li><li><a href=/zh/docs/concept/payload/>事件载荷</a></li></ul></details></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=page-links><h3>On this page</h3><nav id=toc><ul><li><a href=#监听方式>监听方式</a></li><li><a href=#注意事项>注意事项</a></li><li><a href=#高级用法>高级用法</a></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl-9"><h1>监听事件</h1><nav class="toc-mobile d-xl-none" aria-label="Quaternary navigation"><details><summary>On this page</summary><div class=page-links><nav id=TableOfContents><ul><li><a href=#监听方式>监听方式</a></li><li><a href=#注意事项>注意事项</a></li><li><a href=#高级用法>高级用法</a></li></ul></nav></div></details></nav><h2 id=监听方式>监听方式<a href=#监听方式 class=anchor aria-hidden=true>#</a></h2><p>目前主要提供了以下几种监听事件的方式：</p><table><thead><tr><th>类型</th><th>描述</th></tr></thead><tbody><tr><td>DidaEventListenerComponent</td><td>可以添加到一个允许添加Component的对象，会在BeginPlay的时候根据配置监听事件</td></tr><tr><td>DidaEventListenerWidget</td><td>可以添加到一个允许添加Widget的对象，会在Construct的时候根据配置监听事件</td></tr><tr><td>DidaEventListenerVariable</td><td>最为通用的一个监听器，允许在任何地方放置，需要自己调用函数绑定监听</td></tr><tr><td>DidaEventMultiListenerComponent</td><td>比起DidaEventListenerComponent，它允许监听多个事件</td></tr><tr><td>DidaEventMultiListenerWidget</td><td>比起DidaEventListenerWidget，它允许监听多个事件</td></tr><tr><td>DidaEventMultiListenerVariable</td><td>比起DidaEventListenerVariable，它允许监听多个事件</td></tr></tbody></table><p>以DidaEventListenerVariable为例，可以通过CreateListenerVariable创建一个监听器。</p><p><img src=/images/concept-listener-variable_hu3318196229432763350.webp width=299 height=294 decoding=async fetchpriority=auto loading=lazy alt=concept-listener-variable id=h-rh-i-0></p><div class="callout callout-tip d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="outline/rocket svg-inline callout-icon me-2 mb-3" id="svg-rocket" role="img"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 13a8 8 0 017 7 6 6 0 003-5 9 9 0 006-8 3 3 0 00-3-3 9 9 0 00-8 6 6 6 0 00-5 3"/><path d="M7 14a6 6 0 00-3 6 6 6 0 006-3"/><path d="M15 9m-1 0a1 1 0 102 0 1 1 0 10-2 0"/></svg><div class=callout-content><div class=callout-body><p>如果创建了一个ListenerVariable，那么还应持有他的引用，防止Listener被GC而无法收到事件。</p></div></div></div><p>下面是相关参数的说明：</p><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>Outer</td><td>用作实例化Variable的Outer，同时会被用作获取EventSubsystem</td></tr><tr><td>Event</td><td>所需要触发的事件</td></tr><tr><td>OnEventInvoked</td><td>触发事件后的回调</td></tr><tr><td>Channel</td><td>所监听的频道，只有不设Channel或相同Channel的事件会被触发</td></tr><tr><td>PriorityLayer</td><td>优先级层级，会根据层级与优先级大小判断优先级</td></tr><tr><td>ListenerPriority</td><td>优先级大小，会根据层级与优先级大小判断优先级</td></tr><tr><td>bShouldRegisterOnStart</td><td>是否在注册时绑定监听，否则可手动调用RegisterChannelListener等</td></tr></tbody></table><div class="callout callout-note d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="outline/info-circle svg-inline callout-icon me-2 mb-3" id="svg-info-circle" role="img"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1018 0A9 9 0 003 12"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><div class=callout-content><div class=callout-body><p>优先级决定了事件触发多个监听器时的顺序，优先级大的会被先触发</p><p>为了定义清晰，应优先使用分层来定义优先级大小</p><p>会先判断优先级枚举，枚举值越大则优先级越大</p></div></div></div><h2 id=注意事项>注意事项<a href=#注意事项 class=anchor aria-hidden=true>#</a></h2><p>不允许同一个DidaEventListenerInterface多次监听同一事件，重复注册监听无效。即使注册时设置不同Channel也不允许，真的需要可先解除旧的注册或创建多个实例。</p><p>允许一个DidaEventListenerInterface监听多个事件，此时每个事件触发都会调用OnEventCalled，会导致逻辑较难维护，因此还是推荐一个DidaEventListenerInterfac对应一个Event。如果真的需要监听多个事件，可以使用DidaEventMultiListenerXXX相关接口。</p><h2 id=高级用法>高级用法<a href=#高级用法 class=anchor aria-hidden=true>#</a></h2><p>为了更高级的监听用途，或者不想创建额外的对象，目前允许把一个现有的对象设置为监听器。</p><p>只需要把一个基于UObject的类加上DidaEventListenerInterface接口，并实现相关逻辑即可。</p><ol><li>将类加上DidaEventListenerInterface接口</li><li>实现GetListenerName用于标识监听器名称，可以直接返回GetName()</li><li>实现OnEventCalled用于接收事件调用</li><li>在合适的时机调用UDidaEventLibrary::RegisterListener注册监听器</li><li>在合适的时机调用UDidaEventLibrary::UnregisterListener注销监听器</li></ol><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="page-nav d-flex flex-column flex-sm-row"><div class="card w-100"><div class="card-body d-flex"><div class="d-flex flex-column justify-content-center"><svg class="icon icon-tabler icon-tabler-arrow-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12h14"/><path d="M5 12l6 6"/><path d="M5 12l6-6"/></svg></div><div class="d-flex flex-column"><div class=text-body-secondary>Prev</div><a href=/zh/docs/concept/invoke/ class="stretched-link text-reset text-decoration-none">广播事件</a></div></div></div><div class=m-2></div><div class="card text-end w-100"><div class="card-body d-flex justify-content-end"><div class="d-flex flex-column"><div class=text-body-secondary>Next</div><a href=/zh/docs/concept/channel/ class="stretched-link text-reset text-decoration-none">事件频道</a></div><div class="d-flex flex-column justify-content-center"><svg class="icon icon-tabler icon-tabler-arrow-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12h14"/><path d="M13 18l6-6"/><path d="M13 6l6 6"/></svg></div></div></div></div></main></div></div></div><footer class="footer text-muted"><div class=container-lg><div class=row><div class="col-lg-8 text-center text-lg-start"><ul class=list-inline></ul></div><div class="col-lg-8 text-center text-lg-end"><ul class=list-inline><li class=list-inline-item><a class=text-muted href=http://didapipa.com/>@DiDaPiPa</a></li></ul></div></div></div></footer><script async src=/js/app.c17553444ec7c62f781ddbaa011948f6d85a1bab49420047d68a2b89852a8b36.js integrity="sha256-wXVTRE7Hxi94HduqARlI9thaG6tJQgBH1ooriYUqizY="></script><script async src=/js/flexsearch.zh.c1bfee604ecdc0f5233c2eca245cebeaa468b34b7f404d02ff991093cce77f2b.js integrity="sha256-wb/uYE7NwPUjPC7KJFzr6qRos0t/QE0C/5kQk8znfys="></script><script async src=/js/search-modal.0415aa45353ab123a509f6ddc6861549ece898b90872fcf757cd2663041dac96.js integrity="sha256-BBWqRTU6sSOlCfbdxoYVSezomLkIcvz3V80mYwQdrJY="></script></body></html>
+<!doctype html>
+<html lang="zh" data-bs-theme="auto">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preload" href="/fonts/vendor/jost/jost-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/vendor/jost/jost-v4-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/vendor/jost/jost-v4-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+<script 
+  src="/js/color-mode.86a91f050a481d0a3f0c72ac26543cb6228c770875981c58dcbc008fd3f875c8.js"
+  integrity="sha256-hqkfBQpIHQo/DHKsJlQ8tiKMdwh1mBxY3LwAj9P4dcg=">
+</script>
+
+
+<link rel="stylesheet" href="/main.685468b25f7104c105fb780b7049b61b756ae1f26a67d7720ef19d42034e7d21dc90fb7c835c342721f73b0097d2e9a5c4c3ea2dbd127cff9db7469d13c13a84.css" integrity="sha512-aFRosl9xBMEF+3gLcEm2G3Vq4fJqZ9dyDvGdQgNOfSHckPt8g1w0JyH3OwCX0umlxMPqLb0SfP+dt0adE8E6hA==" crossorigin="anonymous">
+
+<noscript><style>img.lazyload { display: none; }</style></noscript><base href="/zh/docs/concept/listener/">
+
+  <link rel="canonical" href="/zh/docs/concept/listener/">
+    <link rel="alternate" hreflang="x-default" href="/docs/concept/listener/">
+    <link rel="alternate" hreflang="en" href="/docs/concept/listener/">
+    <link rel="alternate" hreflang="zh" href="/zh/docs/concept/listener/">
+
+
+<title>监听事件  |  DidaEvent</title>
+<meta name="description" content="DidaEvent系统是一个事件系统，用于在特定时机执行指定操作。">
+
+    
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    
+      <link
+        rel="apple-touch-icon"
+        href="/apple-touch-icon.png"
+        sizes="180x180"
+        type="image/png"
+      >
+      <link
+        rel="icon"
+        href="/favicon-192x192.png"
+        sizes="192x192"
+        type="image/png"
+      >
+      <link
+        rel="icon"
+        href="/favicon-512x512.png"
+        sizes="512x512"
+        type="image/png"
+      >
+<link rel="manifest" href="/manifest.webmanifest">
+
+<meta property="og:url" content="/zh/docs/concept/listener/">
+  <meta property="og:site_name" content="DidaEvent">
+  <meta property="og:title" content="监听事件">
+  <meta property="og:description" content="DidaEvent系统是一个事件系统，用于在特定时机执行指定操作。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-11-03T12:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-03T12:00:00+00:00">
+    <meta property="og:image" content="/cover.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="/cover.png">
+  <meta name="twitter:title" content="监听事件">
+  <meta name="twitter:description" content="DidaEvent系统是一个事件系统，用于在特定时机执行指定操作。">
+      <meta name="twitter:site" content="@getdoks">
+
+    
+    
+    <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "/zh/",
+       "name": "Dida Event",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "/zh/docs/",
+       "name": "Docs",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "/zh/docs/concept/",
+       "name": "概念说明",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "监听事件",
+       "position": 4
+     }
+   ]
+ }
+</script>
+
+
+
+
+
+</head>
+
+  
+  <body class="single section docs" data-bs-spy="scroll" data-bs-target="#toc" data-bs-root-margin="0px 0px -60%" data-bs-smooth-scroll="true" tabindex="0">
+    <div class="sticky-top">
+<header class="navbar navbar-expand-lg">
+  <div class="container-lg">
+  
+    <a class="navbar-brand me-auto me-lg-3" href="/zh/">DidaEvent</a>
+
+    
+    
+    <button type="button" id="searchToggleMobile" class="btn btn-link nav-link mx-2 d-lg-none" aria-label="Search website">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <circle cx="10" cy="10" r="7"></circle>
+        <line x1="21" y1="21" x2="15" y2="15"></line>
+      </svg>
+    </button>
+    
+    <button class="btn btn-link d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavSection" aria-controls="offcanvasNavSection" aria-label="Open section navigation menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots-vertical" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+        <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+        <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+      </svg>
+    </button>
+    <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="offcanvasNavSection" aria-labelledby="offcanvasNavSectionLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavSectionLabel">Docs</h5>
+        <button type="button" class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss="offcanvas" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="offcanvas-body">
+        <aside class="doks-sidebar mt-n3">
+          <nav id="doks-docs-nav" aria-label="Tertiary navigation">
+            
+  
+    
+<nav class="section-nav docs-links">
+  <ul class="list-unstyled">
+
+  <li>
+    <details open>
+      <summary>事件系统</summary>
+      <ul class="list-unstyled list-nested">
+
+  <li>
+      <a href="/zh/docs/overview/introduction/">实现说明</a>
+  </li>
+
+  <li>
+      <a href="/zh/docs/overview/install/">安装</a>
+  </li>
+
+  <li>
+      <a href="/zh/docs/overview/changelog/">更新日志</a>
+  </li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details open>
+      <summary>使用指南</summary>
+      <ul class="list-unstyled list-nested">
+
+  <li>
+      <a href="/zh/docs/tutorial/quick/">快速编写一个事件</a>
+  </li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details open open>
+      <summary>概念说明</summary>
+      <ul class="list-unstyled list-nested">
+
+  <li>
+      <a href="/zh/docs/concept/invoke/">广播事件</a>
+  </li>
+
+  <li class="active" >
+      <a aria-current="page" href="/zh/docs/concept/listener/">监听事件</a>
+  </li>
+
+  <li>
+      <a href="/zh/docs/concept/channel/">事件频道</a>
+  </li>
+
+  <li>
+      <a href="/zh/docs/concept/payload/">事件载荷</a>
+  </li>
+      </ul>
+    </details>
+  </li>
+  </ul>
+</nav>
+
+  
+
+          </nav>
+        </aside>
+      </div>
+    </div>
+    
+    <button class="btn btn-link nav-link mx-2 order-3 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavMain" aria-controls="offcanvasNavMain" aria-label="Open main navigation menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <line x1="4" y1="8" x2="20" y2="8"></line>
+        <line x1="4" y1="16" x2="20" y2="16"></line>
+      </svg>
+    </button>
+
+    
+    <div class="offcanvas offcanvas-end h-auto" tabindex="-1" id="offcanvasNavMain" aria-labelledby="offcanvasNavMainLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavMainLabel">DidaEvent</h5>
+        <button type="button" class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss="offcanvas" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+         </svg>
+        </button>
+      </div>
+      
+      <div class="offcanvas-body d-flex flex-column flex-lg-row justify-content-between">
+        <ul class="navbar-nav flex-grow-1"><li class="nav-item">
+                <a class="nav-link active" href="/zh/docs/overview/introduction/" aria-current="true">Docs</a>
+              </li>
+            </ul>
+
+        
+        
+        <button type="button" id="searchToggleDesktop" class="btn btn-link nav-link p-2 d-none d-lg-block" aria-label="Search website">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <circle cx="10" cy="10" r="7"></circle>
+            <line x1="21" y1="21" x2="15" y2="15"></line>
+          </svg>
+        </button>
+        
+        <div class="dropdown mt-1 order-lg-2">
+          <button class="btn btn-dropdown dropdown-toggle" id="doks-languages" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
+            <span class="dropdown-caret">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 5h7"></path>
+                <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
+                <path d="M5 9c0 2.144 2.952 3.908 6.7 4"></path>
+                <path d="M12 20l4 -9l4 9"></path>
+                <path d="M19.1 18h-6.2"></path>
+              </svg>
+              <span id="doks-language-current">简体中文</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M6 9l6 6l6 -6"></path>
+              </svg>
+            </span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-lg-end me-lg-2 shadow rounded border-0" aria-labelledby="doks-languages">
+
+            <li><span class="dropdown-item current" aria-current="true">简体中文</span></li>
+
+            <li><hr class="dropdown-divider"></li>
+
+            
+              <li><a class="dropdown-item " rel="alternate" href="/docs/concept/listener/" hreflang="en" lang="en">English</a></li>
+            
+              
+          </ul>
+        </div>
+        
+        
+        <button id="buttonColorMode" class="btn btn-link mx-auto nav-link p-0 ms-lg-2 me-lg-1" type="button" aria-label="Toggle theme">
+          <svg data-bs-theme-value="dark" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+          </svg>
+          <svg data-bs-theme-value="light" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0m-5 0h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+          </svg>
+        </button>
+        
+        
+        </div>
+    </div>
+
+    
+    </div>
+</header>
+</div>
+
+<div class="modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-md-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 visually-hidden" id="searchModalLabel">Search</h1>
+        <button type="button" class="btn-close visually-hidden" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="search-input flex-grow-1 d-none">
+          <form id="search-form" class="search-form" action="#" method="post" accept-charset="UTF-8" role="search">
+            <label for="query" class="visually-hidden">Search</label>
+            <div class="d-flex">
+              <input type="search" id="query" name="query" class="search-text form-control form-control-lg" placeholder="Search" aria-label="Search" maxlength="128" autocomplete="off">
+              <button type="button" class="btn btn-link text-decoration-none px-0 ms-3 d-md-none" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p class="search-loading status message d-none mt-3 text-center">Loading search index…</p>
+        <p class="search-no-recent message d-none mt-3 text-center">No recent searches</p>
+        <p class="search-no-results message d-none mt-3 text-center">No results for "<strong><span class="query-no-results">Query here</span></strong>"</p>
+        <div id="searchResults" class="search-results"></div>
+        <template>
+          <article class="search-result list-view">
+            <div class="card my-3">
+              <div class="card-body">
+                <header>
+                  <h2 class="h5 title title-submitted mb-0"><a class="stretched-link text-decoration-none text-reset" href="#">Title here</a></h2>
+                  <div class="submitted d-none"><time class="created-date">Date here</time></div>
+                </header>
+                <div class="content">Summary here</div>
+              </div>
+            </div>
+          </article>
+        </template>
+      </div>
+      <div class="modal-footer">
+        <ul class="list-inline me-auto d-none d-md-block">
+          <li class="list-inline-item"><kbd class="me-2"><svg width="15" height="15" aria-label="Enter key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M12 3.53088v3c0 1-1 2-2 2H4M7 11.53088l-3-3 3-3"></path></g></svg></kbd><span class="DocSearch-Label">to select</span></li>
+          <li class="list-inline-item"><kbd class="me-2"><svg width="15" height="15" aria-label="Arrow down" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 3.5v8M10.5 8.5l-3 3-3-3"></path></g></svg></kbd><kbd class="me-2"><svg width="15" height="15" aria-label="Arrow up" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 11.5v-8M10.5 6.5l-3-3-3 3"></path></g></svg></kbd><span class="DocSearch-Label">to navigate</span></li>
+          <li class="list-inline-item"><kbd class="me-2"><svg width="15" height="15" aria-label="Escape key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956"></path></g></svg></kbd><span class="DocSearch-Label">to close</span></li>
+        </ul>
+        <p class="d-md-none">Search by <a class="text-decoration-none" href="https://github.com/nextapps-de/flexsearch">FlexSearch</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="wrap container-lg" role="document">
+      <div class="content">
+      
+        
+	<div class="row flex-xl-nowrap">
+		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+			
+  
+    
+<nav class="section-nav docs-links">
+  <ul class="list-unstyled">
+
+  <li>
+    <details open>
+      <summary>事件系统</summary>
+      <ul class="list-unstyled list-nested">
+
+  <li>
+      <a href="/zh/docs/overview/introduction/">实现说明</a>
+  </li>
+
+  <li>
+      <a href="/zh/docs/overview/install/">安装</a>
+  </li>
+
+  <li>
+      <a href="/zh/docs/overview/changelog/">更新日志</a>
+  </li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details open>
+      <summary>使用指南</summary>
+      <ul class="list-unstyled list-nested">
+
+  <li>
+      <a href="/zh/docs/tutorial/quick/">快速编写一个事件</a>
+  </li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details open open>
+      <summary>概念说明</summary>
+      <ul class="list-unstyled list-nested">
+
+  <li>
+      <a href="/zh/docs/concept/invoke/">广播事件</a>
+  </li>
+
+  <li class="active" >
+      <a aria-current="page" href="/zh/docs/concept/listener/">监听事件</a>
+  </li>
+
+  <li>
+      <a href="/zh/docs/concept/channel/">事件频道</a>
+  </li>
+
+  <li>
+      <a href="/zh/docs/concept/payload/">事件载荷</a>
+  </li>
+      </ul>
+    </details>
+  </li>
+  </ul>
+</nav>
+
+  
+
+		</div>
+		
+		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+			<div class="page-links">
+  <h3>On this page</h3>
+    <nav id="toc">
+  <ul>
+    <li><a href="#监听方式">监听方式</a></li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#高级用法">高级用法</a></li>
+  </ul>
+</nav>
+</div>
+
+		</nav>
+		<main class="docs-content col-lg-11 col-xl-9">
+		
+			<h1>监听事件</h1>
+			
+			<nav class="toc-mobile d-xl-none" aria-label="Quaternary navigation">
+				<details>
+    <summary>On this page</summary>
+    <div class="page-links">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#监听方式">监听方式</a></li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#高级用法">高级用法</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+
+			</nav>
+			<h2 id="监听方式">监听方式<a href="#监听方式" class="anchor" aria-hidden="true">#</a> </h2>
+<p>目前主要提供了以下几种监听事件的方式：</p>
+<table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>DidaEventListenerComponent</td>
+          <td>可以添加到一个允许添加Component的对象，会在BeginPlay的时候根据配置监听事件</td>
+      </tr>
+      <tr>
+          <td>DidaEventListenerWidget</td>
+          <td>可以添加到一个允许添加Widget的对象，会在Construct的时候根据配置监听事件</td>
+      </tr>
+      <tr>
+          <td>DidaEventListenerVariable</td>
+          <td>最为通用的一个监听器，允许在任何地方放置，需要自己调用函数绑定监听</td>
+      </tr>
+      <tr>
+          <td>DidaEventMultiListenerComponent</td>
+          <td>比起DidaEventListenerComponent，它允许监听多个事件</td>
+      </tr>
+      <tr>
+          <td>DidaEventMultiListenerWidget</td>
+          <td>比起DidaEventListenerWidget，它允许监听多个事件</td>
+      </tr>
+      <tr>
+          <td>DidaEventMultiListenerVariable</td>
+          <td>比起DidaEventListenerVariable，它允许监听多个事件</td>
+      </tr>
+  </tbody>
+</table>
+<p>以DidaEventListenerVariable为例，可以通过CreateListenerVariable创建一个监听器。</p>
+<p>
+
+<img
+  src="/images/concept-listener-variable_hu3318196229432763350.webp"
+  width="299"
+  height="294"
+  decoding="async"
+  fetchpriority="auto"
+  loading="lazy"
+  alt="concept-listener-variable"id="h-rh-i-0"
+/></p>
+<div class="callout callout-tip d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3">
+  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+ 
+ class="outline/rocket svg-inline callout-icon me-2 mb-3" id="svg-rocket" role="img">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3" />
+  <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
+  <path d="M15 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+</svg>
+  <div class="callout-content">
+    
+    <div class="callout-body">
+      <p>如果创建了一个ListenerVariable，那么还应持有他的引用，防止Listener被GC而无法收到事件。</p>
+
+    </div>
+  </div>
+</div>
+
+<p>下面是相关参数的说明：</p>
+<table>
+  <thead>
+      <tr>
+          <th>参数</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Outer</td>
+          <td>用作实例化Variable的Outer，同时会被用作获取EventSubsystem</td>
+      </tr>
+      <tr>
+          <td>Event</td>
+          <td>所需要触发的事件</td>
+      </tr>
+      <tr>
+          <td>OnEventInvoked</td>
+          <td>触发事件后的回调</td>
+      </tr>
+      <tr>
+          <td>Channel</td>
+          <td>所监听的频道，只有不设Channel或相同Channel的事件会被触发</td>
+      </tr>
+      <tr>
+          <td>PriorityLayer</td>
+          <td>优先级层级，会根据层级与优先级大小判断优先级</td>
+      </tr>
+      <tr>
+          <td>ListenerPriority</td>
+          <td>优先级大小，会根据层级与优先级大小判断优先级</td>
+      </tr>
+      <tr>
+          <td>bShouldRegisterOnStart</td>
+          <td>是否在注册时绑定监听，否则可手动调用RegisterChannelListener等</td>
+      </tr>
+  </tbody>
+</table>
+<div class="callout callout-note d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3">
+  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+ 
+ class="outline/info-circle svg-inline callout-icon me-2 mb-3" id="svg-info-circle" role="img">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+  <path d="M12 9h.01" />
+  <path d="M11 12h1v4h1" />
+</svg>
+  <div class="callout-content">
+    
+    <div class="callout-body">
+      <p>优先级决定了事件触发多个监听器时的顺序，优先级大的会被先触发</p>
+<p>为了定义清晰，应优先使用分层来定义优先级大小</p>
+<p>会先判断优先级枚举，枚举值越大则优先级越大</p>
+
+    </div>
+  </div>
+</div>
+
+<h2 id="注意事项">注意事项<a href="#注意事项" class="anchor" aria-hidden="true">#</a> </h2>
+<p>不允许同一个DidaEventListenerInterface多次监听同一事件，重复注册监听无效。即使注册时设置不同Channel也不允许，真的需要可先解除旧的注册或创建多个实例。</p>
+<p>允许一个DidaEventListenerInterface监听多个事件，此时每个事件触发都会调用OnEventCalled，会导致逻辑较难维护，因此还是推荐一个DidaEventListenerInterfac对应一个Event。如果真的需要监听多个事件，可以使用DidaEventMultiListenerXXX相关接口。</p>
+<h2 id="高级用法">高级用法<a href="#高级用法" class="anchor" aria-hidden="true">#</a> </h2>
+<p>为了更高级的监听用途，或者不想创建额外的对象，目前允许把一个现有的对象设置为监听器。</p>
+<p>只需要把一个基于UObject的类加上DidaEventListenerInterface接口，并实现相关逻辑即可。</p>
+<ol>
+<li>将类加上DidaEventListenerInterface接口</li>
+<li>实现GetListenerName用于标识监听器名称，可以直接返回GetName()</li>
+<li>实现OnEventCalled用于接收事件调用</li>
+<li>在合适的时机调用UDidaEventLibrary::RegisterListener注册监听器</li>
+<li>在合适的时机调用UDidaEventLibrary::UnregisterListener注销监听器</li>
+</ol>
+
+			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
+				</div>
+			<div class="page-nav d-flex flex-column flex-sm-row">
+	
+	<div class="card w-100">
+			<div class="card-body d-flex">
+				<div class="d-flex flex-column justify-content-center">
+					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+						<path d="M5 12l14 0"></path>
+						<path d="M5 12l6 6"></path>
+						<path d="M5 12l6 -6"></path>
+				 	</svg>
+				</div>
+				<div class="d-flex flex-column">
+					<div class="text-body-secondary">Prev</div>
+					<a href="/zh/docs/concept/invoke/" class="stretched-link text-reset text-decoration-none">广播事件</a>
+				</div>
+			</div>
+		</div>
+	<div class="m-2"></div>
+	<div class="card text-end w-100">
+			<div class="card-body d-flex justify-content-end">
+				<div class="d-flex flex-column">
+					<div class="text-body-secondary">Next</div>
+					<a href="/zh/docs/concept/channel/" class="stretched-link text-reset text-decoration-none">事件频道</a>
+				</div>
+				<div class="d-flex flex-column justify-content-center">
+					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+						<path d="M5 12l14 0"></path>
+						<path d="M13 18l6 -6"></path>
+						<path d="M13 6l6 6"></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</div>
+
+			
+		</main>
+		
+	</div>
+
+      
+      </div>
+    </div>
+    
+    
+    <footer class="footer text-muted">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-lg-8 text-center text-lg-start">
+        <ul class="list-inline">
+          
+        </ul>
+      </div>
+      <div class="col-lg-8 text-center text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item"> <a class="text-muted" href="http://didapipa.com/">@DiDaPiPa</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script async
+  src="/js/app.c17553444ec7c62f781ddbaa011948f6d85a1bab49420047d68a2b89852a8b36.js"
+  integrity="sha256-wXVTRE7Hxi94HduqARlI9thaG6tJQgBH1ooriYUqizY=">
+</script>
+
+
+
+
+
+<script async
+  src="/js/flexsearch.zh.c1bfee604ecdc0f5233c2eca245cebeaa468b34b7f404d02ff991093cce77f2b.js"
+  integrity="sha256-wb/uYE7NwPUjPC7KJFzr6qRos0t/QE0C/5kQk8znfys=">
+</script>
+<script async
+  src="/js/search-modal.0415aa45353ab123a509f6ddc6861549ece898b90872fcf757cd2663041dac96.js"
+  integrity="sha256-BBWqRTU6sSOlCfbdxoYVSezomLkIcvz3V80mYwQdrJY=">
+</script>
+
+    
+  </body>
+</html>

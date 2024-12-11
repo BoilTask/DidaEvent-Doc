@@ -1,3 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Guide on DidaEvent</title><link>/docs/tutorial/</link><description>Recent content in Guide on DidaEvent</description><generator>Hugo</generator><language>en</language><copyright>Copyright (c) 2020-2024 Thulite</copyright><lastBuildDate>Sun, 03 Nov 2024 12:00:00 +0000</lastBuildDate><atom:link href="/docs/tutorial/index.xml" rel="self" type="application/rss+xml"/><item><title>Quick Start</title><link>/docs/tutorial/quick/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/docs/tutorial/quick/</guid><description>&lt;p>With the following steps, we can quickly define and use an event.&lt;/p>
-&lt;h2 id="define-an-event">Define an Event&lt;/h2>
-&lt;p>To create an event, we need to define a subclass based on &lt;code>UDidaEvent&lt;/code>, which can be a &lt;code>C++&lt;/code> class or a blueprint class.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Guide on DidaEvent</title>
+    <link>/docs/tutorial/</link>
+    <description>Recent content in Guide on DidaEvent</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>Copyright (c) 2020-2024 Thulite</copyright>
+    <lastBuildDate>Sun, 03 Nov 2024 12:00:00 +0000</lastBuildDate>
+    <atom:link href="/docs/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quick Start</title>
+      <link>/docs/tutorial/quick/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/docs/tutorial/quick/</guid>
+      <description>&lt;p&gt;With the following steps, we can quickly define and use an event.&lt;/p&gt;&#xA;&lt;h2 id=&#34;define-an-event&#34;&gt;Define an Event&lt;/h2&gt;&#xA;&lt;p&gt;To create an event, we need to define a subclass based on &lt;code&gt;UDidaEvent&lt;/code&gt;, which can be a &lt;code&gt;C++&lt;/code&gt; class or a blueprint class.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

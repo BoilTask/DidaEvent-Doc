@@ -1,360 +1,69 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DidaEvent</title><link>/zh/</link><description>Recent content on DidaEvent</description><generator>Hugo</generator><language>zh</language><copyright>Copyright (c) 2020-2024 Thulite</copyright><lastBuildDate>Sun, 03 Nov 2024 12:00:00 +0000</lastBuildDate><atom:link href="/zh/index.xml" rel="self" type="application/rss+xml"/><item><title>实现说明</title><link>/zh/docs/overview/introduction/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/overview/introduction/</guid><description>&lt;h2 id="系统简述">系统简述&lt;/h2>
-&lt;p>一种允许在特定时机执行指定操作的机制，通常需要包括事件源、事件监听、事件调度等部分。&lt;/p>
-&lt;p>通过事件系统，我们可以更为方便地实现两个较为独立的系统之间的调用。&lt;/p>
-&lt;p>而引入一个好用的事件系统之后，我们也可以更多的使用“观察者模式”设计逻辑。&lt;/p>
-&lt;blockquote>
-&lt;p>观察者是一种行为设计模式，允许你定义一种订阅机制，可在对象事件发生时通知多个“观察”该对象的其他对象。——&lt;a href="https://refactoringguru.cn/design-patterns/observer">观察者设计模式 (refactoringguru.cn)&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="设计思路">设计思路&lt;/h2>
-&lt;p>我们需要提供一个更为完善的事件系统，从而达到实现类似需求时，无需再建立功能向的事件系统。&lt;/p>
-&lt;p>该系统应该实现以下几点目标：&lt;/p>
-&lt;ul>
-&lt;li>易用性
-&lt;ul>
-&lt;li>应尽可能减少系统的理解门槛
-&lt;ul>
-&lt;li>提高逻辑的可读性&lt;/li>
-&lt;li>完善系统的相关文档&lt;/li>
-&lt;li>规范事件系统的维护流程&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>应能便捷的由某一系统发送事件
-&lt;ul>
-&lt;li>C++中发送&lt;/li>
-&lt;li>蓝图中发送&lt;/li>
-&lt;li>Lua中发送&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>应能便捷的由某一系统监听事件
-&lt;ul>
-&lt;li>C++中监听&lt;/li>
-&lt;li>蓝图中监听&lt;/li>
-&lt;li>Lua中监听&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>扩展性
-&lt;ul>
-&lt;li>应能便捷的扩展一种新事件&lt;/li>
-&lt;li>提高技术方案的严谨性避免出现不兼容更新&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>全面性
-&lt;ul>
-&lt;li>应能处理DS与客户端的同步问题&lt;/li>
-&lt;li>应能解决C++&amp;amp;蓝图&amp;amp;Lua的三方通信&lt;/li>
-&lt;li>应能处理多监听者顺序问题&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>鲁棒性
-&lt;ul>
-&lt;li>尽量减少使用事件系统时的强制要求&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>性能
-&lt;ul>
-&lt;li>应在运行时减少不必要的事件分发]&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="功能实现">功能实现&lt;/h2>
-&lt;h3 id="事件定义">事件定义&lt;/h3>
-&lt;p>使用Class作为指定事件的一种索引，防止纯Name式带来的误操作，同时也方便后续以Event为单位扩展。&lt;/p></description></item><item><title>安装</title><link>/zh/docs/overview/install/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/overview/install/</guid><description>&lt;h2 id="购买">购买&lt;/h2>
-&lt;p>可前往&lt;a href="https://www.unrealengine.com/marketplace/zh-CN/product/didaevent">Unreal Engine Marketplace&lt;/a>购买。&lt;/p></description></item><item><title>更新日志</title><link>/zh/docs/overview/changelog/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/overview/changelog/</guid><description>&lt;h2 id="100">1.0.0&lt;/h2>
-&lt;p>上传基础实现版本。&lt;/p>
-&lt;ul>
-&lt;li>提供了事件定义&lt;/li>
-&lt;li>提供了事件广播&lt;/li>
-&lt;li>提供了事件监听&lt;/li>
-&lt;li>提供了频道机制&lt;/li>
-&lt;/ul></description></item><item><title>快速编写一个事件</title><link>/zh/docs/tutorial/quick/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/tutorial/quick/</guid><description>&lt;p>通过以下步骤，我们能快速定义和使用一个事件。&lt;/p>
-&lt;h2 id="定义事件">定义事件&lt;/h2>
-&lt;p>要创建一个事件，我们需要定义一个以&lt;code>UDidaEvent&lt;/code>为基类的子类，可以是&lt;code>C++&lt;/code>类也可以是蓝图类。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/quick-declare-event.gif"
- width="700"
- height="700"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="quick-declare-event"id="h-rh-i-0"
-/>&lt;/p>
-&lt;h2 id="广播事件">广播事件&lt;/h2>
-&lt;p>在蓝图中可以调用&lt;code>DidaInvokeEvent&lt;/code>结点触发事件。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/quick-invoke-event.gif"
- width="650"
- height="400"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="quick-invoke-event"id="h-rh-i-1"
-/>&lt;/p>
-&lt;h2 id="监听事件">监听事件&lt;/h2>
-&lt;p>在&lt;code>Actor&lt;/code>中可以使用&lt;code>DidaEventListenerComponent&lt;/code>来监听事件。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/quick-create-listener.gif"
- width="350"
- height="350"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="quick-create-listener"id="h-rh-i-2"
-/>&lt;/p>
-&lt;p>设置Component的属性，配置所需监听的事件。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/quick-set-listener-event.gif"
- width="450"
- height="450"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="quick-set-listener-event"id="h-rh-i-3"
-/>&lt;/p>
-&lt;p>使用Component上的Delegate编写收到事件后的逻辑。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/quick-set-listener-callback.gif"
- width="1300"
- height="750"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="quick-set-listener-callback"id="h-rh-i-4"
-/>&lt;/p>
-&lt;h2 id="恭喜">恭喜&lt;/h2>
-&lt;p>🎉通过如上步骤我们实现了一个功能：&lt;/p>
-&lt;p>在按键时，角色对象输出了一条日志。&lt;/p></description></item><item><title>广播事件</title><link>/zh/docs/concept/invoke/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/concept/invoke/</guid><description>&lt;p>目前提供了如下触发事件的结点：&lt;/p>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>结点名&lt;/th>
- &lt;th>描述&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>DidaInvokeEvent&lt;/td>
- &lt;td>最常用的触发事件的结点，同时会被用作获取EventSubsystem&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;p>以DidaInvokeEvent为例，通过直接在一个蓝图中找到DidaInvokeEvent结点即可使用。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/concept-invoke-event_hu5248449951311072720.webp"
- width="307"
- height="318"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="concept-invoke-event"id="h-rh-i-0"
-/>&lt;/p>
-&lt;p>下面是相关参数的说明：&lt;/p>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>参数&lt;/th>
- &lt;th>描述&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>Outer&lt;/td>
- &lt;td>用作实例化Payload的Outer，同时会被用作获取EventSubsystem&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Event&lt;/td>
- &lt;td>所需要触发的事件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Channel&lt;/td>
- &lt;td>如果不为None，只有不设Channel或相同Channel的监听会被触发&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Payload&lt;/td>
- &lt;td>需要指定的载荷参数的类型&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;p>当选择一个Payload之后，会列出Payload中定义的meta=(ExposeOnSpawn)的参数。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/concept-invoke-payload_hu1276233845258907778.webp"
- width="384"
- height="442"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="concept-invoke-payload"id="h-rh-i-1"
-/>&lt;/p></description></item><item><title>监听事件</title><link>/zh/docs/concept/listener/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/concept/listener/</guid><description>&lt;h2 id="监听方式">监听方式&lt;/h2>
-&lt;p>目前主要提供了以下几种监听事件的方式：&lt;/p>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>类型&lt;/th>
- &lt;th>描述&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>DidaEventListenerComponent&lt;/td>
- &lt;td>可以添加到一个允许添加Component的对象，会在BeginPlay的时候根据配置监听事件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventListenerWidget&lt;/td>
- &lt;td>可以添加到一个允许添加Widget的对象，会在Construct的时候根据配置监听事件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventListenerVariable&lt;/td>
- &lt;td>最为通用的一个监听器，允许在任何地方放置，需要自己调用函数绑定监听&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventMultiListenerComponent&lt;/td>
- &lt;td>比起DidaEventListenerComponent，它允许监听多个事件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventMultiListenerWidget&lt;/td>
- &lt;td>比起DidaEventListenerWidget，它允许监听多个事件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>DidaEventMultiListenerVariable&lt;/td>
- &lt;td>比起DidaEventListenerVariable，它允许监听多个事件&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;p>以DidaEventListenerVariable为例，可以通过CreateListenerVariable创建一个监听器。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/concept-listener-variable_hu3318196229432763350.webp"
- width="299"
- height="294"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="concept-listener-variable"id="h-rh-i-0"
-/>&lt;/p>
-&lt;div class="callout callout-tip d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3">
- &lt;svg
- xmlns="http://www.w3.org/2000/svg"
- width="24"
- height="24"
- viewBox="0 0 24 24"
- fill="none"
- stroke="currentColor"
- stroke-width="2"
- stroke-linecap="round"
- stroke-linejoin="round"
- 
- class="outline/rocket svg-inline callout-icon me-2 mb-3" id="svg-rocket" role="img">
- &lt;path stroke="none" d="M0 0h24v24H0z" fill="none"/>
- &lt;path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3" />
- &lt;path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
- &lt;path d="M15 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-&lt;/svg>
- &lt;div class="callout-content">
- 
- &lt;div class="callout-body">
- &lt;p>如果创建了一个ListenerVariable，那么还应持有他的引用，防止Listener被GC而无法收到事件。&lt;/p></description></item><item><title>事件频道</title><link>/zh/docs/concept/channel/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/concept/channel/</guid><description>&lt;h2 id="机制说明">机制说明&lt;/h2>
-&lt;p>为了解决某些监听器不是需要监听所有某一事件的触发，所以引入了频道Channel机制。&lt;/p>
-&lt;p>思路上只有注册与广播相同Channel的事件会被触发（不指定Channel应所有都触发）。&lt;/p>
-&lt;ul>
-&lt;li>Invoke一个None，所有Listen都会被触发（无论Listen有没有指定Channel）&lt;/li>
-&lt;li>Invoke一个Channel，相同Channel的Listen会被触发&lt;/li>
-&lt;li>Listen一个None，所有Invoke都会接收（无论Invoke有没有指定Channel）&lt;/li>
-&lt;li>Listen一个Channel，相同Channel的Invoke会接收&lt;/li>
-&lt;/ul>
-&lt;h2 id="频道分配">频道分配&lt;/h2>
-&lt;p>对应的提供了如何使用Object来动态生成Channel的接口UDidaEventLibrary::GetObjectChannel。&lt;/p>
-&lt;p>默认情况下只要传入相同的对象，该函数会返回相同的Key，从而可以实现可以指定监听来自同一频道的事件。&lt;/p>
-&lt;p>在大部分情况下，频道是某一事件所定义的信息。因此即使Channel重名，在多个事件之间也不会冲突。&lt;/p>
-&lt;h2 id="重载频道">重载频道&lt;/h2>
-&lt;p>允许一个Object继承IDidaEventChannelInterface，重写接口的ReplaceObjectChannel即可改变计算Channel的方式，需要注意如果函数返回值为false，仍会以默认方式转换。&lt;/p>
-&lt;p>比如可以定义Controller的计算转为以PlayerId来标识，这样也可以方便实现跨端的Channel交互。&lt;/p>
-&lt;p>目前提供的特殊计算记录在：特殊Channel规则汇总&lt;/p>
-&lt;div class="callout callout-caution d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3">
- &lt;svg
- xmlns="http://www.w3.org/2000/svg"
- width="24"
- height="24"
- viewBox="0 0 24 24"
- fill="none"
- stroke="currentColor"
- stroke-width="2"
- stroke-linecap="round"
- stroke-linejoin="round"
- 
- class="outline/alert-triangle svg-inline callout-icon me-2 mb-3" id="svg-alert-triangle" role="img">
- &lt;path stroke="none" d="M0 0h24v24H0z" fill="none"/>
- &lt;path d="M12 9v4" />
- &lt;path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
- &lt;path d="M12 16h.01" />
-&lt;/svg>
- &lt;div class="callout-content">
- 
- &lt;div class="callout-body">
- &lt;p>需要注意如果Channel动态，则会导致依赖Channel的对应逻辑必须处理好先后顺序等问题。&lt;/p></description></item><item><title>事件载荷</title><link>/zh/docs/concept/payload/</link><pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate><guid>/zh/docs/concept/payload/</guid><description>&lt;h2 id="基础使用">基础使用&lt;/h2>
-&lt;p>载荷Payload用于事件触发时附带的额外参数，通过继承UDidaEventPayload来定义。&lt;/p>
-&lt;p>触发时，通过结点设置载荷参数。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/concept-invoke-payload_hu1276233845258907778.webp"
- width="384"
- height="442"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="concept-invoke-payload"id="h-rh-i-0"
-/>&lt;/p>
-&lt;p>监听时，通过Cast成目标类型来获取载荷参数。&lt;/p>
-&lt;p>
-
-&lt;img
- src="/images/concept-payload-cast_hu10532882097624435871.webp"
- width="734"
- height="192"
- decoding="async"
- fetchpriority="auto"
- loading="lazy"
- alt="concept-payload-cast"id="h-rh-i-1"
-/>&lt;/p>
-&lt;h2 id="生成载荷">生成载荷&lt;/h2>
-&lt;p>如果因为自身需求不能使用K2Node自动实例化Payload，可以调用事件的函数库中的静态函数来自己实例化一个Payload，相关函数为：UDidaEventLibrary::SpawnDidaEventPayload，然后使用函数库中的静态函数UDidaEventLibrary::InvokeEvent在触发事件即可。&lt;/p>
-&lt;h2 id="重载解析">重载解析&lt;/h2>
-&lt;p>Payload允许重载以下两个函数：&lt;/p>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>参数&lt;/th>
- &lt;th>描述&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>MakeString&lt;/td>
- &lt;td>根据载荷数据生成字符串&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>LoadString&lt;/td>
- &lt;td>从字符串中赋值载荷数据&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;p>他们会在RPC与TCP收发事件时被调用，用作编码载荷的数据。&lt;/p>
-&lt;p>目前默认会根据反射信息把数据生成一个Json字符串，但对于指针等特殊类型，需要自己定义一个编码与解码的逻辑，实现相关函数后，便能实现无感知的在网络上发送事件。&lt;/p>
-&lt;h2 id="载荷回收">载荷回收&lt;/h2>
-&lt;p>为了优化生成载荷的开销，所以提供了载荷的回收。为了避免未正确实现回收函数而造成的异常，所以默认关闭了载荷的回收。如果需要开启，则可以创建一个基于UDidaEventPayloadRecyclable的子类，并实现NativeOnRecycled或K2_OnRecycled。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DidaEvent</title>
+    <link>/zh/</link>
+    <description>Recent content on DidaEvent</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <copyright>Copyright (c) 2020-2024 Thulite</copyright>
+    <lastBuildDate>Sun, 03 Nov 2024 12:00:00 +0000</lastBuildDate>
+    <atom:link href="/zh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>实现说明</title>
+      <link>/zh/docs/overview/introduction/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/zh/docs/overview/introduction/</guid>
+      <description>&lt;h2 id=&#34;系统简述&#34;&gt;系统简述&lt;/h2&gt;&#xA;&lt;p&gt;一种允许在特定时机执行指定操作的机制，通常需要包括事件源、事件监听、事件调度等部分。&lt;/p&gt;&#xA;&lt;p&gt;通过事件系统，我们可以更为方便地实现两个较为独立的系统之间的调用。&lt;/p&gt;&#xA;&lt;p&gt;而引入一个好用的事件系统之后，我们也可以更多的使用“观察者模式”设计逻辑。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;观察者是一种行为设计模式，允许你定义一种订阅机制，可在对象事件发生时通知多个“观察”该对象的其他对象。——&lt;a href=&#34;https://refactoringguru.cn/design-patterns/observer&#34;&gt;观察者设计模式 (refactoringguru.cn)&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;设计思路&#34;&gt;设计思路&lt;/h2&gt;&#xA;&lt;p&gt;我们需要提供一个更为完善的事件系统，从而达到实现类似需求时，无需再建立功能向的事件系统。&lt;/p&gt;&#xA;&lt;p&gt;该系统应该实现以下几点目标：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;易用性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;应尽可能减少系统的理解门槛&#xA;&lt;ul&gt;&#xA;&lt;li&gt;提高逻辑的可读性&lt;/li&gt;&#xA;&lt;li&gt;完善系统的相关文档&lt;/li&gt;&#xA;&lt;li&gt;规范事件系统的维护流程&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;应能便捷的由某一系统发送事件&#xA;&lt;ul&gt;&#xA;&lt;li&gt;C++中发送&lt;/li&gt;&#xA;&lt;li&gt;蓝图中发送&lt;/li&gt;&#xA;&lt;li&gt;Lua中发送&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;应能便捷的由某一系统监听事件&#xA;&lt;ul&gt;&#xA;&lt;li&gt;C++中监听&lt;/li&gt;&#xA;&lt;li&gt;蓝图中监听&lt;/li&gt;&#xA;&lt;li&gt;Lua中监听&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;扩展性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;应能便捷的扩展一种新事件&lt;/li&gt;&#xA;&lt;li&gt;提高技术方案的严谨性避免出现不兼容更新&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;全面性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;应能处理DS与客户端的同步问题&lt;/li&gt;&#xA;&lt;li&gt;应能解决C++&amp;amp;蓝图&amp;amp;Lua的三方通信&lt;/li&gt;&#xA;&lt;li&gt;应能处理多监听者顺序问题&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;鲁棒性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;尽量减少使用事件系统时的强制要求&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;性能&#xA;&lt;ul&gt;&#xA;&lt;li&gt;应在运行时减少不必要的事件分发]&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;功能实现&#34;&gt;功能实现&lt;/h2&gt;&#xA;&lt;h3 id=&#34;事件定义&#34;&gt;事件定义&lt;/h3&gt;&#xA;&lt;p&gt;使用Class作为指定事件的一种索引，防止纯Name式带来的误操作，同时也方便后续以Event为单位扩展。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>安装</title>
+      <link>/zh/docs/overview/install/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/zh/docs/overview/install/</guid>
+      <description>&lt;h2 id=&#34;购买&#34;&gt;购买&lt;/h2&gt;&#xA;&lt;p&gt;可前往&lt;a href=&#34;https://www.fab.com/zh-cn/listings/a3991470-a7b9-474d-8038-289dad0b0497&#34;&gt;Unreal Engine Marketplace&lt;/a&gt;购买。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>更新日志</title>
+      <link>/zh/docs/overview/changelog/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/zh/docs/overview/changelog/</guid>
+      <description>&lt;h2 id=&#34;100&#34;&gt;1.0.0&lt;/h2&gt;&#xA;&lt;p&gt;上传基础实现版本。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;提供了事件定义&lt;/li&gt;&#xA;&lt;li&gt;提供了事件广播&lt;/li&gt;&#xA;&lt;li&gt;提供了事件监听&lt;/li&gt;&#xA;&lt;li&gt;提供了频道机制&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>快速编写一个事件</title>
+      <link>/zh/docs/tutorial/quick/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/zh/docs/tutorial/quick/</guid>
+      <description>&lt;p&gt;通过以下步骤，我们能快速定义和使用一个事件。&lt;/p&gt;&#xA;&lt;h2 id=&#34;定义事件&#34;&gt;定义事件&lt;/h2&gt;&#xA;&lt;p&gt;要创建一个事件，我们需要定义一个以&lt;code&gt;UDidaEvent&lt;/code&gt;为基类的子类，可以是&lt;code&gt;C++&lt;/code&gt;类也可以是蓝图类。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/quick-declare-event.gif&#34;&#xD;&#xA;  width=&#34;700&#34;&#xD;&#xA;  height=&#34;700&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;quick-declare-event&#34;id=&#34;h-rh-i-0&#34;&#xD;&#xA;/&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;监听事件&#34;&gt;监听事件&lt;/h2&gt;&#xA;&lt;p&gt;在&lt;code&gt;Actor&lt;/code&gt;中可以使用&lt;code&gt;DidaEventListenerComponent&lt;/code&gt;来监听事件。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/quick-create-listener.gif&#34;&#xD;&#xA;  width=&#34;350&#34;&#xD;&#xA;  height=&#34;350&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;quick-create-listener&#34;id=&#34;h-rh-i-1&#34;&#xD;&#xA;/&gt;&lt;/p&gt;&#xA;&lt;p&gt;设置Component的属性，配置所需监听的事件。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/quick-set-listener-event.gif&#34;&#xD;&#xA;  width=&#34;450&#34;&#xD;&#xA;  height=&#34;450&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;quick-set-listener-event&#34;id=&#34;h-rh-i-2&#34;&#xD;&#xA;/&gt;&lt;/p&gt;&#xA;&lt;p&gt;使用Component上的Delegate编写收到事件后的逻辑。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/quick-set-listener-callback.gif&#34;&#xD;&#xA;  width=&#34;1300&#34;&#xD;&#xA;  height=&#34;750&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;quick-set-listener-callback&#34;id=&#34;h-rh-i-3&#34;&#xD;&#xA;/&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;广播事件&#34;&gt;广播事件&lt;/h2&gt;&#xA;&lt;p&gt;在蓝图中可以调用&lt;code&gt;DidaInvokeEvent&lt;/code&gt;结点触发事件。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/quick-invoke-event.gif&#34;&#xD;&#xA;  width=&#34;650&#34;&#xD;&#xA;  height=&#34;400&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;quick-invoke-event&#34;id=&#34;h-rh-i-4&#34;&#xD;&#xA;/&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;恭喜&#34;&gt;恭喜&lt;/h2&gt;&#xA;&lt;p&gt;🎉通过如上步骤我们实现了一个功能：&lt;/p&gt;&#xA;&lt;p&gt;在按键时，角色对象输出了一条日志。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>广播事件</title>
+      <link>/zh/docs/concept/invoke/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/zh/docs/concept/invoke/</guid>
+      <description>&lt;p&gt;目前提供了如下触发事件的结点：&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;结点名&lt;/th&gt;&#xA;          &lt;th&gt;描述&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaInvokeEvent&lt;/td&gt;&#xA;          &lt;td&gt;最常用的触发事件的结点，同时会被用作获取EventSubsystem&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;以DidaInvokeEvent为例，通过直接在一个蓝图中找到DidaInvokeEvent结点即可使用。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/concept-invoke-event_hu5248449951311072720.webp&#34;&#xD;&#xA;  width=&#34;307&#34;&#xD;&#xA;  height=&#34;318&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;concept-invoke-event&#34;id=&#34;h-rh-i-0&#34;&#xD;&#xA;/&gt;&lt;/p&gt;&#xA;&lt;p&gt;下面是相关参数的说明：&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;参数&lt;/th&gt;&#xA;          &lt;th&gt;描述&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Outer&lt;/td&gt;&#xA;          &lt;td&gt;用作实例化Payload的Outer，同时会被用作获取EventSubsystem&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Event&lt;/td&gt;&#xA;          &lt;td&gt;所需要触发的事件&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Channel&lt;/td&gt;&#xA;          &lt;td&gt;如果不为None，只有不设Channel或相同Channel的监听会被触发&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Payload&lt;/td&gt;&#xA;          &lt;td&gt;需要指定的载荷参数的类型&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;当选择一个Payload之后，会列出Payload中定义的meta=(ExposeOnSpawn)的参数。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/concept-invoke-payload_hu1276233845258907778.webp&#34;&#xD;&#xA;  width=&#34;384&#34;&#xD;&#xA;  height=&#34;442&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;concept-invoke-payload&#34;id=&#34;h-rh-i-1&#34;&#xD;&#xA;/&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>监听事件</title>
+      <link>/zh/docs/concept/listener/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/zh/docs/concept/listener/</guid>
+      <description>&lt;h2 id=&#34;监听方式&#34;&gt;监听方式&lt;/h2&gt;&#xA;&lt;p&gt;目前主要提供了以下几种监听事件的方式：&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;类型&lt;/th&gt;&#xA;          &lt;th&gt;描述&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventListenerComponent&lt;/td&gt;&#xA;          &lt;td&gt;可以添加到一个允许添加Component的对象，会在BeginPlay的时候根据配置监听事件&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventListenerWidget&lt;/td&gt;&#xA;          &lt;td&gt;可以添加到一个允许添加Widget的对象，会在Construct的时候根据配置监听事件&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventListenerVariable&lt;/td&gt;&#xA;          &lt;td&gt;最为通用的一个监听器，允许在任何地方放置，需要自己调用函数绑定监听&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventMultiListenerComponent&lt;/td&gt;&#xA;          &lt;td&gt;比起DidaEventListenerComponent，它允许监听多个事件&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventMultiListenerWidget&lt;/td&gt;&#xA;          &lt;td&gt;比起DidaEventListenerWidget，它允许监听多个事件&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DidaEventMultiListenerVariable&lt;/td&gt;&#xA;          &lt;td&gt;比起DidaEventListenerVariable，它允许监听多个事件&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;以DidaEventListenerVariable为例，可以通过CreateListenerVariable创建一个监听器。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/concept-listener-variable_hu3318196229432763350.webp&#34;&#xD;&#xA;  width=&#34;299&#34;&#xD;&#xA;  height=&#34;294&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;concept-listener-variable&#34;id=&#34;h-rh-i-0&#34;&#xD;&#xA;/&gt;&lt;/p&gt;&#xA;&lt;div class=&#34;callout callout-tip d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3&#34;&gt;&#xD;&#xA;  &lt;svg&#xA;  xmlns=&#34;http://www.w3.org/2000/svg&#34;&#xA;  width=&#34;24&#34;&#xA;  height=&#34;24&#34;&#xA;  viewBox=&#34;0 0 24 24&#34;&#xA;  fill=&#34;none&#34;&#xA;  stroke=&#34;currentColor&#34;&#xA;  stroke-width=&#34;2&#34;&#xA;  stroke-linecap=&#34;round&#34;&#xA;  stroke-linejoin=&#34;round&#34;&#xA; &#xA; class=&#34;outline/rocket svg-inline callout-icon me-2 mb-3&#34; id=&#34;svg-rocket&#34; role=&#34;img&#34;&gt;&#xA;  &lt;path stroke=&#34;none&#34; d=&#34;M0 0h24v24H0z&#34; fill=&#34;none&#34;/&gt;&#xA;  &lt;path d=&#34;M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3&#34; /&gt;&#xA;  &lt;path d=&#34;M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3&#34; /&gt;&#xA;  &lt;path d=&#34;M15 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0&#34; /&gt;&#xA;&lt;/svg&gt;&#xD;&#xA;  &lt;div class=&#34;callout-content&#34;&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;div class=&#34;callout-body&#34;&gt;&#xD;&#xA;      &lt;p&gt;如果创建了一个ListenerVariable，那么还应持有他的引用，防止Listener被GC而无法收到事件。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>事件频道</title>
+      <link>/zh/docs/concept/channel/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/zh/docs/concept/channel/</guid>
+      <description>&lt;h2 id=&#34;机制说明&#34;&gt;机制说明&lt;/h2&gt;&#xA;&lt;p&gt;为了解决某些监听器不是需要监听所有某一事件的触发，所以引入了频道Channel机制。&lt;/p&gt;&#xA;&lt;p&gt;思路上只有注册与广播相同Channel的事件会被触发（不指定Channel应所有都触发）。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Invoke一个None，所有Listen都会被触发（无论Listen有没有指定Channel）&lt;/li&gt;&#xA;&lt;li&gt;Invoke一个Channel，相同Channel的Listen会被触发&lt;/li&gt;&#xA;&lt;li&gt;Listen一个None，所有Invoke都会接收（无论Invoke有没有指定Channel）&lt;/li&gt;&#xA;&lt;li&gt;Listen一个Channel，相同Channel的Invoke会接收&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;频道分配&#34;&gt;频道分配&lt;/h2&gt;&#xA;&lt;p&gt;对应的提供了如何使用Object来动态生成Channel的接口UDidaEventLibrary::GetObjectChannel。&lt;/p&gt;&#xA;&lt;p&gt;默认情况下只要传入相同的对象，该函数会返回相同的Key，从而可以实现可以指定监听来自同一频道的事件。&lt;/p&gt;&#xA;&lt;p&gt;在大部分情况下，频道是某一事件所定义的信息。因此即使Channel重名，在多个事件之间也不会冲突。&lt;/p&gt;&#xA;&lt;h2 id=&#34;重载频道&#34;&gt;重载频道&lt;/h2&gt;&#xA;&lt;p&gt;允许一个Object继承IDidaEventChannelInterface，重写接口的ReplaceObjectChannel即可改变计算Channel的方式，需要注意如果函数返回值为false，仍会以默认方式转换。&lt;/p&gt;&#xA;&lt;p&gt;比如可以定义Controller的计算转为以PlayerId来标识，这样也可以方便实现跨端的Channel交互。&lt;/p&gt;&#xA;&lt;p&gt;目前提供的特殊计算记录在：特殊Channel规则汇总&lt;/p&gt;&#xA;&lt;div class=&#34;callout callout-caution d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3&#34;&gt;&#xD;&#xA;  &lt;svg&#xA;  xmlns=&#34;http://www.w3.org/2000/svg&#34;&#xA;  width=&#34;24&#34;&#xA;  height=&#34;24&#34;&#xA;  viewBox=&#34;0 0 24 24&#34;&#xA;  fill=&#34;none&#34;&#xA;  stroke=&#34;currentColor&#34;&#xA;  stroke-width=&#34;2&#34;&#xA;  stroke-linecap=&#34;round&#34;&#xA;  stroke-linejoin=&#34;round&#34;&#xA; &#xA; class=&#34;outline/alert-triangle svg-inline callout-icon me-2 mb-3&#34; id=&#34;svg-alert-triangle&#34; role=&#34;img&#34;&gt;&#xA;  &lt;path stroke=&#34;none&#34; d=&#34;M0 0h24v24H0z&#34; fill=&#34;none&#34;/&gt;&#xA;  &lt;path d=&#34;M12 9v4&#34; /&gt;&#xA;  &lt;path d=&#34;M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z&#34; /&gt;&#xA;  &lt;path d=&#34;M12 16h.01&#34; /&gt;&#xA;&lt;/svg&gt;&#xD;&#xA;  &lt;div class=&#34;callout-content&#34;&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;div class=&#34;callout-body&#34;&gt;&#xD;&#xA;      &lt;p&gt;需要注意如果Channel动态，则会导致依赖Channel的对应逻辑必须处理好先后顺序等问题。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>事件载荷</title>
+      <link>/zh/docs/concept/payload/</link>
+      <pubDate>Sun, 03 Nov 2024 12:00:00 +0000</pubDate>
+      <guid>/zh/docs/concept/payload/</guid>
+      <description>&lt;h2 id=&#34;基础使用&#34;&gt;基础使用&lt;/h2&gt;&#xA;&lt;p&gt;载荷Payload用于事件触发时附带的额外参数，通过继承UDidaEventPayload来定义。&lt;/p&gt;&#xA;&lt;p&gt;触发时，通过结点设置载荷参数。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/concept-invoke-payload_hu1276233845258907778.webp&#34;&#xD;&#xA;  width=&#34;384&#34;&#xD;&#xA;  height=&#34;442&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;concept-invoke-payload&#34;id=&#34;h-rh-i-0&#34;&#xD;&#xA;/&gt;&lt;/p&gt;&#xA;&lt;p&gt;监听时，通过Cast成目标类型来获取载荷参数。&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&lt;img&#xD;&#xA;  src=&#34;/images/concept-payload-cast_hu10532882097624435871.webp&#34;&#xD;&#xA;  width=&#34;734&#34;&#xD;&#xA;  height=&#34;192&#34;&#xD;&#xA;  decoding=&#34;async&#34;&#xD;&#xA;  fetchpriority=&#34;auto&#34;&#xD;&#xA;  loading=&#34;lazy&#34;&#xD;&#xA;  alt=&#34;concept-payload-cast&#34;id=&#34;h-rh-i-1&#34;&#xD;&#xA;/&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;生成载荷&#34;&gt;生成载荷&lt;/h2&gt;&#xA;&lt;p&gt;如果因为自身需求不能使用K2Node自动实例化Payload，可以调用事件的函数库中的静态函数来自己实例化一个Payload，相关函数为：UDidaEventLibrary::SpawnDidaEventPayload，然后使用函数库中的静态函数UDidaEventLibrary::InvokeEvent在触发事件即可。&lt;/p&gt;&#xA;&lt;h2 id=&#34;重载解析&#34;&gt;重载解析&lt;/h2&gt;&#xA;&lt;p&gt;Payload允许重载以下两个函数：&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;参数&lt;/th&gt;&#xA;          &lt;th&gt;描述&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MakeString&lt;/td&gt;&#xA;          &lt;td&gt;根据载荷数据生成字符串&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;LoadString&lt;/td&gt;&#xA;          &lt;td&gt;从字符串中赋值载荷数据&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;他们会在RPC与TCP收发事件时被调用，用作编码载荷的数据。&lt;/p&gt;&#xA;&lt;p&gt;目前默认会根据反射信息把数据生成一个Json字符串，但对于指针等特殊类型，需要自己定义一个编码与解码的逻辑，实现相关函数后，便能实现无感知的在网络上发送事件。&lt;/p&gt;&#xA;&lt;h2 id=&#34;载荷回收&#34;&gt;载荷回收&lt;/h2&gt;&#xA;&lt;p&gt;为了优化生成载荷的开销，所以提供了载荷的回收。为了避免未正确实现回收函数而造成的异常，所以默认关闭了载荷的回收。如果需要开启，则可以创建一个基于UDidaEventPayloadRecyclable的子类，并实现NativeOnRecycled或K2_OnRecycled。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
